@@ -1,0 +1,120 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.mat-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.logo {
+  margin-top: 100px;
+  height: 6em;
+  object-fit: contain;
+}
+.items {
+  margin-top: 80px;
+}
+h3 {
+  font-family: "Mukta", sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+.lists {
+  // margin-left: 20px;
+  margin-top: 3em;
+}
+p {
+  font-family: "robboto";
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.1s;
+  margin-top: 25px;
+  padding: 4px;
+  color: black;
+}
+.i {
+  position: relative;
+  top: 5px;
+  left: 1px;
+  font-size: 25px;
+}
+
+p:hover {
+  cursor: pointer;
+  border-left: 4px solid purple;
+  background: rgba(112, 8, 65, 0.185);
+}
+
+.toolbar {
+  background: #614385;
+  background: -webkit-linear-gradient(to right, #516395, #614385);
+  color: white;
+  background: linear-gradient(to right, #516395, #614385);
+  font-family: "Mukta", sans-serif;
+  float: right;
+  text-align: right;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  justify-content: right;
+  align-items: center;
+}
+.alignright {
+  padding: 2px;
+  position: relative;
+  left: 95%;
+  display: flex;
+  background-color: white;
+  border-radius: 50%;
+}
+.list {
+  position: fixed;
+  left: 91%;
+  top: 4em;
+  z-index: 5000;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
+  align-items: center;
+}
+.end {
+  position: relative;
+  left: 95%;
+  display: flex;
+  align-items: center;
+}
+.end:hover {
+  cursor: pointer;
+}
+.avatar {
+  position: relative;
+  top: 3px;
+  height: 1.5em;
+}
+mat-selection-list {
+  padding: 0;
+  margin: 0;
+}
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+.active {
+  background: rgb(55, 10, 179);
+  color: white;
+  border-left: 3px solid pink;
+}

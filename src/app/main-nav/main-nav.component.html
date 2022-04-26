@@ -1,0 +1,73 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <img class="logo" src="https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png" alt="">
+    </mat-toolbar>
+    <mat-nav-list class="items">
+      <h3 class="mukta">
+        C.U.S.T
+      </h3>
+
+
+
+      <div class="lists">
+        <p class="active"  (click)="gotopage('admin-dashboard')" mat-list-item>
+          <mat-icon class="i" matPrefix>dashboard</mat-icon>
+          DASHBOARD
+        </p>
+
+        <p  (click)="gotopage('admin-dashboard')" mat-list-item>
+          <mat-icon class="i" matPrefix>computer</mat-icon>
+          Final Year Project
+        </p>
+
+
+        <p (click)="gotopage('query-management')" mat-list-item>
+          <mat-icon class="i" matPrefix>contact_support</mat-icon>
+          Student Queries
+        </p>
+
+      </div>
+
+     
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar" color="none">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="alignright">
+        <img class="avatar" src="../../assets/userava.png" alt="">
+
+      </span>
+      <div class="end">
+        <mat-icon *ngIf="!list" (click)="showHideList()" style="color: white;" matPrefix>
+          arrow_drop_down
+        </mat-icon>
+
+        <mat-icon *ngIf="list" (click)="showHideList()" style="color: white;" matPrefix>
+          keyboard_arrow_up
+        </mat-icon>
+
+      </div>
+    </mat-toolbar>
+
+    <mat-selection-list id="areaListControl" name="areaListControl" (selectionChange)="onChange($event)" *ngIf="list"
+      class="list" [multiple]="false">
+      <mat-list-option [selected]="shoe.selected" [value]="shoe" *ngFor="let shoe of typesOfShoes" [value]="shoe">
+        {{shoe}}
+      </mat-list-option>
+    </mat-selection-list>
+
+
+
+    <ng-content>
+
+    </ng-content>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
