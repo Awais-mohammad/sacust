@@ -1,0 +1,49 @@
+//fonts
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+
+.noto {
+    font-family: "Noto Sans JP", sans-serif;
+}
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+.field {
+    width: 90%;
+}
+.logo {
+    height: 8em;
+    object-fit: contain;
+}
+h1 {
+    font-family: "Mukta", sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.btn {
+    margin-top: 20px;
+    width: 90%;
+    font-family: "Mukta", sans-serif;
+}
+.closeicon {
+    position: fixed;
+    left: 64%;
+}
+mat-icon:hover {
+    cursor: pointer;
+}
+::ng-deep.snack-bar-color {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-family: fantasy;
+}
+.example-margin {
+    position: fixed;
+    top: 40%;
+}

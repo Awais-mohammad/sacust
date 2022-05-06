@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,8 @@ export class LoginComponent implements OnInit {
     // private auth: AngularFireAuth,
     public snackBar: MatSnackBar,
     private router: Router,
+    private auth: AngularFireAuth,
+    private firestore: AngularFirestore
   ) { }
 
   email: string;
@@ -32,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   validate() {
     this.showspin()
+
     if (!this.email) {
       this.error = 'email'
       this.errmsg = 'Email cannot be left blank'
@@ -42,11 +47,12 @@ export class LoginComponent implements OnInit {
       this.errmsg = 'Email cannot be left blank'
       this.showspin()
     }
-    else if (!this.email.includes('@cust.edu.pk')) {
+    else if (!this.email.includes('@cust.pk')) {
       this.error = 'email'
       this.errmsg = 'Email format invalid'
       this.showspin()
     }
+    
     else {
       this.login()
     }
@@ -54,55 +60,30 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    // this.auth.auth.signInWithEmailAndPassword(this.email, this.password).then(user => {
-    //   this.firestore.collection('users').doc(user.user.uid).valueChanges().subscribe((c_user: any) => {
+    this.auth.auth.signInWithEmailAndPassword(this.email, this.password).then(user => {
+      this.firestore.collection('users').doc(user.user.uid).valueChanges().subscribe((c_user: any) => {
 
-    //     console.log(c_user);
+        console.log(c_user);
 
-    //     if (c_user.userTyp == this.data.user) {
-    //       if (c_user.userTyp == 'Student') {
+        if (c_user.userType == 'Students') {
 
-    //         this.gotoPage('student-dashboard')
+          this.gotoPage('student-dashboard')
 
-    //       }
-    //       else if (c_user.userTyp == 'Admin') {
+        }
+        else if (c_user.userType == 'admin') {
 
-    //         this.gotoPage('admin-dashboard')
-    //       }
-    //       else if (c_user.userTyp == 'Supervisor') {
-    //         this.gotoPage('supervision-groups')
-    //       }
-    //       else if (c_user.userTyp == 'Co-ordinator') {
-    //         this.gotoPage('cordinator-dashboard')
-    //       }
-    //       else if (c_user.userTyp == 'Staff') {
-    //         this.gotoPage('staff-dashboard')
-    //       }
-    //       else if (c_user.userTyp == 'Evaluator') {
-    //         this.gotoPage('evaluator-dashboard')
-    //       }
-    //       else {
-    //         this.auth.auth.signOut()
-    //         this.openSnackBar('No user found!!', 3000)
-    //       }
-    //     }
-    //     else {
-    //       this.auth.auth.signOut()
-    //       this.openSnackBar('Please donnot try to login into other"s system!', 3000)
-    //     }
+          this.gotoPage('admin-dashboard')
+        }
+        else {
+          this.auth.auth.signOut()
+          this.openSnackBar('Please donnot try to login into other"s system!', 3000)
+        }
 
-    //   })
-    // }).catch((err) => {
-    //   this.openSnackBar(err.message, 3000)
-    // })
+      })
+    }).catch((err) => {
+      this.openSnackBar(err.message, 3000)
+    })
 
-    if(this.data.user=='Admin' && this.email.includes('@cust.edu.pk')){
-      // this.router.navigate(['admin-dashboard'])
-      this.gotoPage('admin-dashboard')
-    }
-    else{
-      this.openSnackBar('invalid email domain',2000)
-    }
   }
 
   openSnackBar(message, duration: number) {

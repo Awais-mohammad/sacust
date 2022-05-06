@@ -5,13 +5,25 @@
             <mat-icon (click)="close()" style="color:red" matPrefix>cancel</mat-icon>
         </div>
         <img class="logo" src="https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png" alt="">
+      
         <h3 style="margin: 1em 0;" *ngIf="data">
-            {{data.user}} Login
+            Create Accounts for {{data.user}}
         </h3>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Name</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input autocomplete="off" [(ngModel)]="name" type="text" matInput placeholder="Placeholder">
+
+            <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
+            </mat-hint>
+        </mat-form-field>
+
+
         <mat-form-field class="field" color="primary" appearance="outline">
             <mat-label class="noto">EMAIL</mat-label>
             <mat-icon matPrefix>mail</mat-icon>
-            <input [(ngModel)]="email" type="text" matInput placeholder="Enter your email">
+            <input autocomplete="off" [(ngModel)]="email" type="text" matInput placeholder="Placeholder">
 
             <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
             </mat-hint>
@@ -20,12 +32,13 @@
         <mat-form-field class="field" color="primary" appearance="outline">
             <mat-label class="noto">Password</mat-label>
             <mat-icon matPrefix>lock</mat-icon>
-            <input [(ngModel)]="password" type="password" matInput placeholder="Enter your password">
+            <input autocomplete="off" [(ngModel)]="password" type="password" matInput placeholder="Placeholder">
 
             <mat-hint *ngIf="error=='password'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
             </mat-hint>
         </mat-form-field>
 
+        
     </div>
 
     <button *ngIf="!spin" class="btn" mat-flat-button color="primary" (click)="validate()">LOGIN</button>

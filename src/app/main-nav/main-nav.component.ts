@@ -2,6 +2,11 @@ import { Component, HostListener } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { RegisterUsersComponent } from '../register-users/register-users.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -18,8 +23,14 @@ export class MainNavComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private dialog: MatDialog,
+    private firestore: AngularFirestore,
+    private auth: AngularFireAuth,
+    private router: Router,
 
-  ) { }
+  ) {
+    this.currentUser()
+  }
 
   typesOfShoes: string[] = ['Profile', 'Logout'];
   width: number;
@@ -41,6 +52,41 @@ export class MainNavComponent {
     if (change.option.value == 'Logout') {
       // this.logout()
     }
+  }
+
+  openDialog(uTyp) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '600px';
+    dialogConfig.width = '500px';
+    dialogConfig.data = {
+      user: uTyp,
+    };
+    this.dialog.open(RegisterUsersComponent, dialogConfig);
+  }
+
+
+  logOut() {
+    this.auth.auth.signOut().then(() => {
+      this.router.navigate(['home'])
+    })
+  }
+
+  cUser: any;
+  currentUser() {
+    this.auth.authState.subscribe(user => {
+      if (user) {
+        if (user.uid) {
+          this.firestore.collection('users').doc(user.uid).valueChanges().subscribe((data: any) => {
+            this.cUser = data;
+            console.log(this.cUser);
+            
+          })
+        }
+      }
+    })
   }
 
   gotopage(param) {

@@ -15,29 +15,35 @@
   top: 0;
   z-index: 1;
 }
+
 .mat-toolbar {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+
 .logo {
   margin-top: 100px;
   height: 6em;
   object-fit: contain;
 }
+
 .items {
   margin-top: 80px;
 }
+
 h3 {
   font-family: "Mukta", sans-serif;
   font-weight: bold;
   text-align: center;
 }
+
 .lists {
   // margin-left: 20px;
   margin-top: 3em;
 }
+
 p {
   font-family: "robboto";
   font-weight: bold;
@@ -47,6 +53,7 @@ p {
   padding: 4px;
   color: black;
 }
+
 .i {
   position: relative;
   top: 5px;
@@ -56,8 +63,8 @@ p {
 
 p:hover {
   cursor: pointer;
-  border-left: 4px solid purple;
-  background: rgba(112, 8, 65, 0.185);
+  background: rgb(55, 10, 179);
+  color: white;
 }
 
 .toolbar {
@@ -74,6 +81,7 @@ p:hover {
   justify-content: right;
   align-items: center;
 }
+
 .alignright {
   padding: 2px;
   position: relative;
@@ -82,6 +90,7 @@ p:hover {
   background-color: white;
   border-radius: 50%;
 }
+
 .list {
   position: fixed;
   left: 91%;
@@ -91,28 +100,34 @@ p:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
   align-items: center;
 }
+
 .end {
   position: relative;
   left: 95%;
   display: flex;
   align-items: center;
 }
+
 .end:hover {
   cursor: pointer;
 }
+
 .avatar {
   position: relative;
   top: 3px;
   height: 1.5em;
 }
+
 mat-selection-list {
   padding: 0;
   margin: 0;
 }
+
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+
 .active {
   background: rgb(55, 10, 179);
   color: white;

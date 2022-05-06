@@ -28,6 +28,12 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { RegisterUsersComponent } from './register-users/register-users.component';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,9 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     HomeComponent,
     LoginComponent,
     AdminDashboardComponent,
-    MainNavComponent
+    MainNavComponent,
+    RegisterUsersComponent,
+    StudentDashboardComponent
   ],
   imports: [
     MatToolbarModule,
@@ -56,7 +64,9 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatTableModule,
-
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

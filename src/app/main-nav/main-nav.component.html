@@ -10,14 +10,14 @@
       </h3>
 
 
-
-      <div class="lists">
-        <p class="active"  (click)="gotopage('admin-dashboard')" mat-list-item>
+<!-- admin side menu -->
+      <div *ngIf="cUser && cUser.userType=='admin'" class="lists">
+        <p class="active" (click)="gotopage('admin-dashboard')" mat-list-item>
           <mat-icon class="i" matPrefix>dashboard</mat-icon>
           DASHBOARD
         </p>
 
-        <p  (click)="gotopage('admin-dashboard')" mat-list-item>
+        <p (click)="gotopage('admin-dashboard')" mat-list-item>
           <mat-icon class="i" matPrefix>computer</mat-icon>
           Final Year Project
         </p>
@@ -28,42 +28,65 @@
           Student Queries
         </p>
 
+        <p (click)="openDialog('Students')" mat-list-item>
+          <mat-icon class="i" matPrefix>add_circle</mat-icon>
+          Create Students
+        </p>
+
+        <p (click)="openDialog('Teachers')" mat-list-item>
+
+          <mat-icon class="i" matPrefix>add_circle</mat-icon>
+          Create Teachers
+
+        </p>
+
+
+
+        <p (click)="logOut()" mat-list-item>
+
+          <mat-icon class="i" matPrefix>logout</mat-icon>
+          Logout
+
+        </p>
+
+
+
       </div>
 
-     
+      <!-- students side menu -->
+
+      <div *ngIf="cUser &&  cUser.userType=='Students'" class="lists">
+        <p class="active" (click)="gotopage('student-dashboard')" mat-list-item>
+          <mat-icon class="i" matPrefix>dashboard</mat-icon>
+          Home
+        </p>
+
+
+
+        <p (click)="logOut()" mat-list-item>
+
+          <mat-icon class="i" matPrefix>logout</mat-icon>
+          Logout
+
+        </p>
+
+
+
+      </div>
+
+
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="toolbar" color="none">
+
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="alignright">
-        <img class="avatar" src="../../assets/userava.png" alt="">
 
-      </span>
-      <div class="end">
-        <mat-icon *ngIf="!list" (click)="showHideList()" style="color: white;" matPrefix>
-          arrow_drop_down
-        </mat-icon>
-
-        <mat-icon *ngIf="list" (click)="showHideList()" style="color: white;" matPrefix>
-          keyboard_arrow_up
-        </mat-icon>
-
-      </div>
     </mat-toolbar>
-
-    <mat-selection-list id="areaListControl" name="areaListControl" (selectionChange)="onChange($event)" *ngIf="list"
-      class="list" [multiple]="false">
-      <mat-list-option [selected]="shoe.selected" [value]="shoe" *ngFor="let shoe of typesOfShoes" [value]="shoe">
-        {{shoe}}
-      </mat-list-option>
-    </mat-selection-list>
-
-
 
     <ng-content>
 

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '500px';
+    dialogConfig.height = '520px';
     dialogConfig.width = '500px';
     dialogConfig.data = {
       user: uTyp,
