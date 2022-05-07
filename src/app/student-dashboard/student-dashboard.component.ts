@@ -16,6 +16,8 @@ export class StudentDashboardComponent implements OnInit {
     private firestore: AngularFirestore
   ) { }
 
+  selectedCSVFileName:string;
+  
   ngOnInit(): void {
   }
 
