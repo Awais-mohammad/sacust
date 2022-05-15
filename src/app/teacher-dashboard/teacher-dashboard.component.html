@@ -1,0 +1,215 @@
+<app-main-nav>
+
+    <!-- content goes in here -->
+
+    <!-- list of labs for the instructor -->
+    <div *ngIf="currentDiv=='main'" class="center">
+
+        <h3 style="font-family: Roboto;position: relative;left: -13.6em;">
+            Your Labs For This Term
+        </h3>
+
+        <div style="position: relative;left: -20em;" *ngIf="labs" class="labs">
+
+            <span style="width: 100%;" *ngFor="let lab of labs">
+                <span style="display: flex;flex-direction:column;">
+                    <h5>{{lab.labName}} - {{lab.courseCode}}</h5>
+                    <p>
+                        Lab has total of {{lab.SA}} Student Assistants
+                        Lab starts at {{lab.slot1}}
+
+                    </p>
+
+                </span>
+
+                <span style="width: 10%;">
+
+                    <button (click)="viewLab(lab)" mat-fab color="light"
+                        aria-label="Example icon button with a bookmark icon">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+
+                </span>
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- indiviual lab detail -->
+
+    <div *ngIf="currentDiv=='view-lab'">
+        <div class="center">
+
+            <h3 *ngIf="labs" style="font-family: Roboto;position: relative;left: -12.6em;">
+                {{underView.labName}}
+            </h3>
+
+            <p style="color: rgba(0, 0, 0, 0.468);font-size: 16px;font-family: Arial;position: relative;left: -28em;">
+                {{underView.courseCode}}
+            </p>
+
+
+
+
+        </div>
+
+        <div style="position: relative;top:10em">
+            <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder">
+                    <img src="http://logok.org/wp-content/uploads/2014/10/Expedia-logo.png" alt=""
+                        class="c-card__image img-responsive" flex="nogrow" />
+                </div>
+
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <header class="c-card__title" flex layout>Slots for this lab</header>
+
+                </div>
+            </article>
+
+            <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder"><img
+                        src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/395/798/datas/original.jpg"
+                        alt="" class="c-card__image img-responsive" flex="nogrow" /></div>
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <div class="c-flight-card__flight-schedule" flex="auto" xs-order="1">
+                        <strong>{{underView.slot1}}</strong>
+                        <sub>Slot 1</sub>
+                    </div>
+
+                    <div class="c-flight-card__price" xs-order="5">
+                        <strong>{{underView.SA}}</strong>
+                        <sub>Student Assistants</sub>
+                    </div>
+
+                    <div (click)="markAttendence(underView.slot1,underView.SA,underView.docID)" class="c-flight-card__action material-icons c-flight-card__action--launch hact" flex="nogrow"
+                        layout xs-order="2"></div>
+
+                </div>
+            </article>
+
+
+            <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder"><img
+                        src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/395/798/datas/original.jpg"
+                        alt="" class="c-card__image img-responsive" flex="nogrow" /></div>
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <div class="c-flight-card__flight-schedule" flex="auto" xs-order="1">
+                        <strong>{{underView.slot2}}</strong>
+                        <sub>Slot 2</sub>
+                    </div>
+
+                    <div class="c-flight-card__price" xs-order="5">
+                        <strong>{{underView.SA}}</strong>
+                        <sub>Student Assistants</sub>
+                    </div>
+
+                    <div (click)="markAttendence(underView.slot2,underView.SA,underView.docID)"
+                        class="c-flight-card__action material-icons c-flight-card__action--launch hact" flex="nogrow"
+                        layout xs-order="2"></div>
+
+                </div>
+            </article>
+
+
+        </div>
+
+        <div style="position: relative;top:10em">
+            <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder">
+                    <img src="http://logok.org/wp-content/uploads/2014/10/Expedia-logo.png" alt=""
+                        class="c-card__image img-responsive" flex="nogrow" />
+                </div>
+
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <header class="c-card__title" flex layout>Requests for SA ship from students</header>
+
+                </div>
+            </article>
+
+            <article *ngFor="let item of saReqs" class="c-card c-card--external c-card--flight c-flight-card"
+                layout="row">
+                <div class="c-card__image-holder"><img
+                        src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/395/798/datas/original.jpg"
+                        alt="" class="c-card__image img-responsive" flex="nogrow" /></div>
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <div class="c-flight-card__flight-schedule" flex="auto" xs-order="1">
+                        <strong>{{item.name}}</strong>
+                        <sub>{{item.regNo}}</sub>
+                    </div>
+
+
+                    <div (click)="addSA(item)"
+                        class="c-flight-card__action material-icons c-flight-card__action--saved hact" flex="nogrow"
+                        layout xs-order="2"></div>
+
+                </div>
+            </article>
+
+            <article *ngIf="!saReqs" class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder"><img
+                        src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/395/798/datas/original.jpg"
+                        alt="" class="c-card__image img-responsive" flex="nogrow" /></div>
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <div class="c-flight-card__flight-schedule" flex="auto" xs-order="1">
+                        <strong>No data to show</strong>
+                        <sub>No SA ship requests for now</sub>
+                    </div>
+
+
+                </div>
+
+            </article>
+
+
+
+        </div>
+
+
+        <div style="position: relative;top:10em">
+            <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder">
+                    <img src="http://logok.org/wp-content/uploads/2014/10/Expedia-logo.png" alt=""
+                        class="c-card__image img-responsive" flex="nogrow" />
+                </div>
+
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <header class="c-card__title" flex layout>SA for this lab</header>
+
+                </div>
+            </article>
+
+
+            <article *ngFor="let item of sa" class="c-card c-card--external c-card--flight c-flight-card" layout="row">
+                <div class="c-card__image-holder"><img
+                        src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_thumbnails/000/395/798/datas/original.jpg"
+                        alt="" class="c-card__image img-responsive" flex="nogrow" /></div>
+
+                <div class="c-card__body" layout="row nowrap" xs-layout="row wrap" flex>
+                    <div class="c-flight-card__flight-schedule" flex="auto" xs-order="1">
+                        <strong>{{item.name}}</strong>
+                        <sub>{{item.regNo}}</sub>
+                    </div>
+
+
+
+                </div>
+            </article>
+
+
+
+
+        </div>
+
+
+    </div>
+
+</app-main-nav>

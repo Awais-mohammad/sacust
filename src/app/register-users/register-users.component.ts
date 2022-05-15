@@ -108,7 +108,7 @@ export class RegisterUsersComponent implements OnInit {
     }
     else if (this.data.user == 'Teachers') {
 
-      if (this.email.includes('@cust.edu.pk')) {
+      if (this.email.includes('@cust.pk')) {
 
         var config = {
           apiKey: "AIzaSyDTfhG_ocAYr870eLCqc361un5NJ2EI4qs",

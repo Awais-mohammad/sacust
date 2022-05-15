@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       this.errmsg = 'Email format invalid'
       this.showspin()
     }
-    
+
     else {
       this.login()
     }
@@ -73,6 +73,9 @@ export class LoginComponent implements OnInit {
         else if (c_user.userType == 'admin') {
 
           this.gotoPage('admin-dashboard')
+        }
+        else if (c_user.userType == 'Teachers') {
+          this.gotoPage('teacher-dashboard')
         }
         else {
           this.auth.auth.signOut()

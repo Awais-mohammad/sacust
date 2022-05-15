@@ -1,0 +1,45 @@
+<div class="closeicon">
+    <mat-icon (click)="close()" style="color:red" matPrefix>cancel</mat-icon>
+</div>
+
+<div *ngIf="!show && !spin">
+
+    <h1 class="heading1">
+        Attendence for slot1
+    </h1>
+
+    <div *ngFor="let item of assistants" class="center">
+
+        <p class="name">
+            {{item.name}}
+        </p>
+
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Mark Attendence</mat-label>
+                <mat-select (selectionChange)="markAttendence($event.value,item.name,item.regNo)">
+                    <mat-option *ngFor="let food of foods" value={{food}}>
+                        {{food}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+    </div>
+
+    <div style="background: white;display:flex;justify-content:center" class="center">
+        <button (click)="saveAtendence()" mat-raised-button color="primary">Save</button>
+    </div>
+</div>
+
+<div style="margin-left: 11em;">
+    <mat-progress-spinner *ngIf="spin" class="example-margin" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+
+</div>
+
+<div *ngIf="show && !spin">
+    <p style="position: relative;top:7em;display: flex;justify-content: center;align-items: center;text-align: center;">
+        Attendence already marked
+    </p>
+</div>

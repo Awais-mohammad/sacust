@@ -10,7 +10,7 @@
       </h3>
 
 
-<!-- admin side menu -->
+      <!-- admin side menu -->
       <div *ngIf="cUser && cUser.userType=='admin'" class="lists">
         <p class="active" (click)="gotopage('admin-dashboard')" mat-list-item>
           <mat-icon class="i" matPrefix>dashboard</mat-icon>
@@ -61,6 +61,35 @@
           Home
         </p>
 
+        <p (click)="gotopage('')" mat-list-item>
+          <mat-icon class="i" matPrefix>computer</mat-icon>
+          My Labs
+        </p>
+
+
+        <p (click)="logOut()" mat-list-item>
+
+          <mat-icon class="i" matPrefix>logout</mat-icon>
+          Logout
+
+        </p>
+
+
+
+      </div>
+
+      <!-- Teachers side menu -->
+
+      <div *ngIf="cUser &&  cUser.userType=='Teachers'" class="lists">
+        <p class="active" (click)="gotopage('teacher-dashboard')" mat-list-item>
+          <mat-icon class="i" matPrefix>dashboard</mat-icon>
+          Home
+        </p>
+
+        <p (click)="createLab()" mat-list-item>
+          <mat-icon class="i" matPrefix>computer</mat-icon>
+          Create Lab
+        </p>
 
 
         <p (click)="logOut()" mat-list-item>

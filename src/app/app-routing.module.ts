@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { StudentDashboardLabsComponent } from './student-dashboard-labs/student-dashboard-labs.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,12 @@ const routes: Routes = [
   }, {
     path: 'student-dashboard',
     component: StudentDashboardComponent
+  }, {
+    path: 'student-dashboard-allLabs',
+    component: StudentDashboardLabsComponent
+  }, {
+    path: 'teacher-dashboard',
+    component: TeacherDashboardComponent
   }
 ];
 

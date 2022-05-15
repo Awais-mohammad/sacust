@@ -1,0 +1,52 @@
+<div class="body">
+
+    <div *ngIf="!spin">
+        <div class="closeicon">
+            <mat-icon (click)="close()" style="color:red" matPrefix>cancel</mat-icon>
+        </div>
+        <!-- <img class="logo" src="https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png" alt=""> -->
+
+        <h3 style="margin: 1em 0;">
+            Provide Following Details to Create Lab
+        </h3>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Course Name</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input [(ngModel)]="labName" autocomplete="off" type="text" matInput placeholder="lab course name">
+
+
+        </mat-form-field>
+
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Course Code</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input [(ngModel)]="courseCode" autocomplete="off" type="text" matInput placeholder="course code">
+
+        </mat-form-field>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">slot 1 start time</mat-label>
+            <mat-icon matPrefix>alarm</mat-icon>
+            <input [(ngModel)]="slot1" autocomplete="off" type="time" matInput placeholder="Placeholder">
+
+
+        </mat-form-field>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">slot 2 start time</mat-label>
+            <mat-icon matPrefix>alarm</mat-icon>
+            <input [(ngModel)]="slot2" autocomplete="off" type="time" matInput placeholder="Placeholder">
+
+
+        </mat-form-field>
+
+
+    </div>
+
+    <button *ngIf="!spin" class="btn" mat-flat-button color="primary" (click)="validate()">Create</button>
+
+    <mat-progress-spinner *ngIf="spin" class="example-margin" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</div>

@@ -7,6 +7,8 @@ import { RegisterUsersComponent } from '../register-users/register-users.compone
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { CreateLabComponent } from '../create-lab/create-lab.component';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-main-nav',
@@ -27,8 +29,9 @@ export class MainNavComponent {
     private firestore: AngularFirestore,
     private auth: AngularFireAuth,
     private router: Router,
-
+    private _bottomSheet: MatBottomSheet
   ) {
+    // this.createLab()
     this.currentUser()
   }
 
@@ -59,7 +62,7 @@ export class MainNavComponent {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '600px';
+    dialogConfig.height = '650px';
     dialogConfig.width = '500px';
     dialogConfig.data = {
       user: uTyp,
@@ -75,6 +78,7 @@ export class MainNavComponent {
   }
 
   cUser: any;
+
   currentUser() {
     this.auth.authState.subscribe(user => {
       if (user) {
@@ -82,14 +86,26 @@ export class MainNavComponent {
           this.firestore.collection('users').doc(user.uid).valueChanges().subscribe((data: any) => {
             this.cUser = data;
             console.log(this.cUser);
-            
+
           })
         }
       }
     })
   }
 
-  gotopage(param) {
+  createLab() {
+    const dialogConfig = new MatDialogConfig();
 
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '600px';
+    dialogConfig.width = '500px';
+    this.dialog.open(CreateLabComponent, dialogConfig);
+  }
+
+
+  gotopage(param) {
+    this.router.navigate([param])
+    
   }
 }

@@ -5,6 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  AngularFireStorageModule,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+  StorageBucket
+} from "@angular/fire/storage";
 
 /*
 Angular material imports
@@ -25,7 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { RegisterUsersComponent } from './register-users/register-users.component';
@@ -34,6 +40,12 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { StudentDashboardLabsComponent } from './student-dashboard-labs/student-dashboard-labs.component';
+import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
+import { CreateLabComponent } from './create-lab/create-lab.component';
+import { AttendenceComponent } from './attendence/attendence.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [
@@ -43,7 +55,11 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
     AdminDashboardComponent,
     MainNavComponent,
     RegisterUsersComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    StudentDashboardLabsComponent,
+    TeacherDashboardComponent,
+    CreateLabComponent,
+    AttendenceComponent
   ],
   imports: [
     MatToolbarModule,
@@ -67,6 +83,8 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    HttpClientModule,
+    FormsModule, ReactiveFormsModule, AngularFireStorageModule, MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
