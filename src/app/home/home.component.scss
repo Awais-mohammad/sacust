@@ -7,13 +7,20 @@
     background-color: rgba(209, 204, 204, 0.089);
     height: 100%;
 }
+
+span:hover {
+    cursor: pointer;
+}
+
 .header {
     text-align: center;
     padding-top: 40px;
+
     img {
         height: 140px;
         object-fit: contain;
     }
+
     h2 {
         font-family: "Mukta", sans-serif;
         font-weight: bold;
@@ -44,12 +51,14 @@
         flex-direction: column;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
         transition: 0.1s ease-in;
+
         img {
             max-height: 8em;
             object-fit: contain;
             padding: 0;
             margin: 0;
         }
+
         .cardheader {
             border-top-right-radius: 10px;
             border-top-left-radius: 10px;
@@ -66,6 +75,7 @@
             left: -1.1em;
         }
     }
+
     .card:hover {
         cursor: pointer;
     }
@@ -75,6 +85,7 @@
     .body {
         width: 100%;
     }
+
     .card {
         display: flex;
         justify-content: center;
@@ -85,12 +96,14 @@
         flex-direction: column;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
         transition: 0.1s ease-in;
+
         img {
             max-height: 8em;
             object-fit: contain;
             padding: 0;
             margin: 0;
         }
+
         .cardheader {
             border-top-right-radius: 10px;
             border-top-left-radius: 10px;

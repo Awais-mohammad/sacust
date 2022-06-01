@@ -46,6 +46,7 @@ import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard
 import { CreateLabComponent } from './create-lab/create-lab.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { RequestComponent } from './request/request.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     StudentDashboardLabsComponent,
     TeacherDashboardComponent,
     CreateLabComponent,
-    AttendenceComponent
+    AttendenceComponent,
+    RequestComponent
   ],
   imports: [
     MatToolbarModule,

@@ -1,0 +1,55 @@
+<div class="body">
+
+    <div *ngIf="!spin">
+        <div class="closeicon">
+            <mat-icon (click)="close()" style="color:red" matPrefix>cancel</mat-icon>
+        </div>
+        <img class="logo" src="https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png" alt="">
+        <h3 style="margin: 1em 0;">
+            Request for account creation
+        </h3>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Name</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input [(ngModel)]="name" type="text" matInput placeholder="Enter your email">
+
+            <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Email</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input [(ngModel)]="email" type="text" matInput placeholder="Enter your password">
+
+            <mat-hint *ngIf="error=='password'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
+            </mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">Rehno/emp id</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input [(ngModel)]="uNumber" type="text" matInput placeholder="Enter your email">
+
+            <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="field" color="primary" appearance="outline">
+            <mat-label class="noto">role</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input [(ngModel)]="role" type="password" matInput placeholder="Enter your password">
+
+            <mat-hint *ngIf="error=='password'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
+            </mat-hint>
+        </mat-form-field>
+
+    </div>
+
+    <button *ngIf="!spin" class="btn" mat-flat-button color="primary" (click)="request()">Request</button>
+
+    <mat-progress-spinner *ngIf="spin" class="example-margin" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</div>
