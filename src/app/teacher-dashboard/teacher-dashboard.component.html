@@ -11,32 +11,37 @@
             </h3>
 
 
-            <div style="position: relative;left: -20em;" *ngIf="labs" class="labs">
+            <div style="position: absolute;top: 4em;left: -2.4em;" *ngIf="labs">
 
                 <div style="display: flex;flex-direction:column">
 
                     <!-- lab cards -->
 
-                    <div *ngFor="let lab of labs">
+                    <div *ngFor="let lab of labs" class="labs">
 
-                        <span style="display: flex;flex-direction:column;">
-                            <h5>{{lab.labName}} - {{lab.courseCode}}</h5>
-                            <p>
-                                Lab has total of {{lab.SA}} Student Assistants
-                                Lab starts at {{lab.slot1}}
+                        <div>
 
-                            </p>
+                            <span>
+                                <h5>{{lab.labName}} - {{lab.courseCode}}</h5>
+                                <p>
+                                    Lab has total of {{lab.SA}} Student Assistants
+                                    Lab starts at {{lab.slot1}}
 
-                        </span>
+                                </p>
 
-                        <span style="width: 10%;">
+                            </span>
 
-                            <button (click)="viewLab(lab)" mat-fab color="light"
-                                aria-label="Example icon button with a bookmark icon">
-                                <mat-icon>open_in_new</mat-icon>
-                            </button>
+                            <span style="width: 100%;">
 
-                        </span>
+                                <button style="width: 100%;" (click)="viewLab(lab)" mat-raised-button color="primary">
+                                    Details
+                                </button>
+
+                            </span>
+
+                        </div>
+
+
 
                     </div>
 
