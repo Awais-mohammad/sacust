@@ -1,0 +1,35 @@
+.cardwraper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    position: absolute;
+    top: 15em;
+    left: 1em;
+    padding: 5px;
+
+    .card {
+        width: 25%;
+        height: 20vh;
+        padding: 5px;
+        margin-left: 6px;
+        border-left: 4px solid blue;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+}
+
+.icon {
+    color: red;
+    position: absolute;
+    top: -0.7em;
+    right: -0.5em;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 27px;
+}

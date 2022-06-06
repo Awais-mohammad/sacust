@@ -4,18 +4,22 @@
     align-items: center;
     position: relative;
     top: 8em;
-    left: 3em;
     width: 80%;
     flex-direction: column;
 }
 
 .labs {
-    background-color: rgba(128, 128, 128, 0.211);
+    background-color: rgba(209, 200, 200, 0.041);
     border-radius: 12px;
+    border-top: 3px solid blue;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 8px;
+    margin-left: 5em;
+    position: relative;
+
 }
 
 .hact:hover {

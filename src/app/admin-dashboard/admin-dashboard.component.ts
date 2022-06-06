@@ -45,11 +45,20 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
+  requests: any;
+  getRequests() {
+
+    this.firestore.collection('requests').valueChanges().subscribe(d => {
+      this.requests = d
+    console.log(this.requests);
+    
+    })
+  }
 
   ngOnInit(): void {
 
     // get current user information
-
+    this.getRequests()
     this.getCurrentUser()
 
     // one time admin account creation

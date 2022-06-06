@@ -2,41 +2,52 @@
 
     <!-- content goes in here -->
 
-    <!-- list of labs for the instructor -->
-    <div *ngIf="currentDiv=='main'" class="center">
+    <div style="position: absolute;width: 100%;">
+        <!-- list of labs for the instructor -->
+        <div *ngIf="currentDiv=='main'" class="center">
 
-        <h3 style="font-family: Roboto;position: relative;left: -13.6em;">
-            Your Labs For This Term
-        </h3>
+            <h3 style="font-family: Roboto;position: relative;left: -11.6em;">
+                Your Labs For This Term
+            </h3>
 
-        <div style="position: relative;left: -20em;" *ngIf="labs" class="labs">
 
-            <span style="width: 100%;" *ngFor="let lab of labs">
-                <span style="display: flex;flex-direction:column;">
-                    <h5>{{lab.labName}} - {{lab.courseCode}}</h5>
-                    <p>
-                        Lab has total of {{lab.SA}} Student Assistants
-                        Lab starts at {{lab.slot1}}
+            <div style="position: relative;left: -20em;" *ngIf="labs" class="labs">
 
-                    </p>
+                <div style="display: flex;flex-direction:column">
 
-                </span>
+                    <!-- lab cards -->
 
-                <span style="width: 10%;">
+                    <div *ngFor="let lab of labs">
 
-                    <button (click)="viewLab(lab)" mat-fab color="light"
-                        aria-label="Example icon button with a bookmark icon">
-                        <mat-icon>open_in_new</mat-icon>
-                    </button>
+                        <span style="display: flex;flex-direction:column;">
+                            <h5>{{lab.labName}} - {{lab.courseCode}}</h5>
+                            <p>
+                                Lab has total of {{lab.SA}} Student Assistants
+                                Lab starts at {{lab.slot1}}
 
-                </span>
+                            </p>
 
-            </span>
+                        </span>
+
+                        <span style="width: 10%;">
+
+                            <button (click)="viewLab(lab)" mat-fab color="light"
+                                aria-label="Example icon button with a bookmark icon">
+                                <mat-icon>open_in_new</mat-icon>
+                            </button>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
 
+    </div>
     <!-- indiviual lab detail -->
 
     <div *ngIf="currentDiv=='view-lab'">
@@ -85,7 +96,8 @@
                         <sub>Student Assistants</sub>
                     </div>
 
-                    <div (click)="markAttendence(underView.slot1,underView.SA,underView.docID)" class="c-flight-card__action material-icons c-flight-card__action--launch hact" flex="nogrow"
+                    <div (click)="markAttendence(underView.slot1,underView.SA,underView.docID)"
+                        class="c-flight-card__action material-icons c-flight-card__action--launch hact" flex="nogrow"
                         layout xs-order="2"></div>
 
                 </div>
