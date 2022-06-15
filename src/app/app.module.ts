@@ -11,7 +11,7 @@ import {
   AngularFireUploadTask,
   StorageBucket
 } from "@angular/fire/storage";
-
+import {MatRadioModule} from '@angular/material/radio';
 /*
 Angular material imports
 */
@@ -47,6 +47,7 @@ import { CreateLabComponent } from './create-lab/create-lab.component';
 import { AttendenceComponent } from './attendence/attendence.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { RequestComponent } from './request/request.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { RequestComponent } from './request/request.component';
     TeacherDashboardComponent,
     CreateLabComponent,
     AttendenceComponent,
-    RequestComponent
+    RequestComponent,
+    FeedbackComponent
   ],
   imports: [
     MatToolbarModule,
@@ -86,7 +88,7 @@ import { RequestComponent } from './request/request.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    FormsModule, ReactiveFormsModule, AngularFireStorageModule, MatBottomSheetModule
+    FormsModule, ReactiveFormsModule, AngularFireStorageModule, MatBottomSheetModule,MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

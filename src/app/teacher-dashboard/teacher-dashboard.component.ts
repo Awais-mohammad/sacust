@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AttendenceComponent } from '../attendence/attendence.component';
 import { Router } from '@angular/router';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 @Component({
   selector: 'app-teacher-dashboard',
@@ -56,7 +57,7 @@ export class TeacherDashboardComponent implements OnInit {
     const addedAt = new Date()
     const incentiveToGive = param.incentive
     this.firestore.collection('labs').doc(this.c_labID).collection('student-assistants').add({
-      name, regNo, addedAt,incentiveToGive
+      name, regNo, addedAt, incentiveToGive
     }).then(doc => {
       const docID = doc.id
       this.firestore.collection('labs').doc(this.c_labID).collection('student-assistants').doc(doc.id).update({
@@ -101,7 +102,24 @@ export class TeacherDashboardComponent implements OnInit {
     this.dialog.open(AttendenceComponent, dialogConfig);
   }
 
+  feedback(sname) {
+    // console.log(slot, sa, labID);
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '80%';
+    dialogConfig.width = '40%';
+    dialogConfig.data = {
+
+      std_name: sname
+    }
+    this.dialog.open(FeedbackComponent, dialogConfig);
+  }
   ngOnInit(): void {
+
+    
     this.auth.authState.subscribe(u => {
       if (u) {
 

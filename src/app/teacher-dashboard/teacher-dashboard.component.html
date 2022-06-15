@@ -55,23 +55,150 @@
     </div>
     <!-- indiviual lab detail -->
 
-    <div *ngIf="currentDiv=='view-lab'">
+    <div style="top:2em;position: relative;width: 100%;" *ngIf="currentDiv=='view-lab'">
         <div class="center">
 
             <h3 *ngIf="labs" style="font-family: Roboto;position: relative;left: -12.6em;">
-                {{underView.labName}}
+                <!-- {{underView.labName}} -->
+                Operating Systems lab
             </h3>
 
-            <p style="color: rgba(0, 0, 0, 0.468);font-size: 16px;font-family: Arial;position: relative;left: -28em;">
-                {{underView.courseCode}}
+            <p style="color: rgba(0, 0, 0, 0.468);font-size: 16px;font-family: Arial;position: relative;left: -28.4em;">
+                <!-- {{underView.courseCode}} -->
+                hmse1344
             </p>
 
 
+            <div class="wrapper">
+
+
+                <div class="card">
+                    <h6 style="font-weight:bold;">
+                        <u>
+                            SA Requests
+                        </u>
+                    </h6>
+
+                    <li *ngFor="let item of [].constructor(2)">
+                        <p>
+
+                            <span>ali</span> requested to join as SA
+
+                        </p>
+
+
+                        <p>
+                            <button mat-raised-button color="primary">Accept</button>
+                        </p>
+
+                        
+                        
+                    </li>
+                </div>
+
+
+
+                <div class="card">
+                    <h6 style="font-weight:bold;">
+                        <u>
+                            Lab SA's
+                        </u>
+                    </h6>
+
+                    <li>
+
+                        <div *ngFor="let item of [].constructor(2)" style="width: 50%;" class="card">
+
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&usqp=CAU"
+                                alt="">
+
+                            <p style="font-size:12px;margin-top: 5px;">
+                                <b>Name</b> Muhammad
+                                <b>Reg No:</b>bse183131
+                            </p>
+
+                        </div>
+
+
+
+
+                    </li>
+                </div>
+
+
+
+                <div class="card">
+                    <h6 style="font-weight:bold;">
+                        <u>
+                            Lab Slots
+                        </u>
+                    </h6>
+
+                    <li>
+
+                        <div *ngFor="let item of [].constructor(2)" class="card"
+                            style="width: 100%;display: flex;flex-direction: column;">
+
+
+                            <p style="font-size:16px;margin-top: 5px;">
+                                <b>slot 1:</b> 12:30
+                                <br>
+                                <b>slot 2:</b> 2:00
+                            </p>
+
+                            <button mat-raised-button color="primary">Attendence</button>
+
+
+                        </div>
+
+
+
+
+                    </li>
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class="card " style="width: 90%;position:relative;left:-1.3em">
+                <h6 style="font-weight:bold;">
+                    <u>
+                        feedback form
+                    </u>
+
+                    <div *ngFor="let item of [].constructor(2)" style="display: flex;width:100%;padding: 5px;">
+
+
+                        <img style="width: 5%;"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&usqp=CAU"
+                            alt="">
+
+                        <p style="font-size:12px;margin-top: 15px;margin-left: 6px;">
+                            <b>Name</b> Muhammad
+                            <b>Reg No:</b>bse183131
+                        </p>
+                        <p style="width: 60%;">
+
+                        </p>
+
+                        <button (click)="feedback('')" mat-raised-button color="primary">feedback</button>
+
+                    </div>
+
+
+                </h6>
+
+
+            </div>
 
 
         </div>
 
-        <div style="position: relative;top:10em">
+        <!-- <div style="position: relative;top:10em">
             <article class="c-card c-card--external c-card--flight c-flight-card" layout="row">
                 <div class="c-card__image-holder">
                     <img src="http://logok.org/wp-content/uploads/2014/10/Expedia-logo.png" alt=""
@@ -224,7 +351,7 @@
 
 
 
-        </div>
+        </div> -->
 
 
     </div>
