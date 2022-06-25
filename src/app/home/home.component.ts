@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '520px';
+    dialogConfig.height = '680px';
     dialogConfig.width = '500px';
     this.dialog.open(RequestComponent, dialogConfig);
   }

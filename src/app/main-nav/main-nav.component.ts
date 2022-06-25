@@ -74,6 +74,7 @@ export class MainNavComponent {
   logOut() {
     this.auth.auth.signOut().then(() => {
       this.router.navigate(['home'])
+      location.reload()
     })
   }
 

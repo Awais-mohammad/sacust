@@ -42,22 +42,70 @@ export class RequestComponent implements OnInit {
 
 
   request() {
-    const name = this.name
-    const email = this.email
-    const verification = this.uNumber
-    const role = this.role
-    this.firestore.collection('requests').add({
-      name, email, verification, role
-    }).then((doc) => {
-      const docID = doc.id
-      this.firestore.collection('requests').doc(doc.id).update({})
-      docID
-    }).then(() => {
-      alert('request send')
-      this.close()
-    })
+
+    if (this.role == 'teacher') {
+
+      // check if teacher exists
+      this.firestore.collection('labs', q => q.where('teacherID', '==', this.uNumber)).valueChanges().subscribe((data: any) => {
+
+        if (data.length < 1) {
+          alert('no lab assigned to you thus you cannot use this system')
+        }
+        else if (this.name != data[0].teacherName) {
+          alert('name miss matched please use official name')
+        }
+        else {
+          console.log(data);
+
+          const password = '123456' + this.uNumber
+          this.auth.auth.createUserWithEmailAndPassword(this.email, password).then(u => {
+            const email = this.email
+            const name = this.name
+            const empID = data[0].teacherID
+            const userType = 'Teachers'
+            const timestamp = new Date()
+            const docID = u.user.uid
+            this.firestore.collection('users').doc(docID).set({
+              email, name, empID, userType, timestamp, docID
+            })
+              .then(() => {
+                alert('you can now login with email and password ->' + password)
+                this.close()
+              })
+
+          })
+
+        }
+      })
+
+    }
+    else {
+
+
+      const name = this.name
+      const email = this.email
+      const verification = this.uNumber
+      const role = this.role
+      this.firestore.collection('requests').add({
+        name, email, verification, role
+      }).then((doc) => {
+        const docID = doc.id
+        this.firestore.collection('requests').doc(doc.id).update({})
+        docID
+      }).then(() => {
+        alert('request send')
+        this.close()
+      })
+    }
   }
 
+  chooseModel(val) {
+    // console.log(val);
+
+    this.role = val
+    console.log(this.role);
+
+  }
   ngOnInit(): void {
   }
 

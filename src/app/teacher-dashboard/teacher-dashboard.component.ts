@@ -119,15 +119,21 @@ export class TeacherDashboardComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    
-    this.auth.authState.subscribe(u => {
+
+    this.auth.authState.subscribe((u) => {
+
       if (u) {
 
-        this.firestore.collection('labs', (q => q.where('teacherID', '==', u.uid))).valueChanges().subscribe(labsData => {
-          this.labs = labsData
-          console.log(this.labs);
+        // console.log();
 
+        this.firestore.collection('users').doc(u.uid).valueChanges().subscribe((data: any) => {
+          this.firestore.collection('labs', (q => q.where('teacherID', '==', data.empID))).valueChanges().subscribe(labsData => {
+            this.labs = labsData
+            console.log(this.labs);
+
+          })
         })
+
       }
     })
 

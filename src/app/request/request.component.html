@@ -11,15 +11,15 @@
 
         <mat-form-field class="field" color="primary" appearance="outline">
             <mat-label class="noto">Name</mat-label>
-            <mat-icon matPrefix>mail</mat-icon>
-            <input [(ngModel)]="name" type="text" matInput placeholder="Enter your email">
+            <mat-icon matPrefix>person</mat-icon>
+            <input [(ngModel)]="name" type="text" matInput placeholder="Enter your name">
 
             <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
             </mat-hint>
         </mat-form-field>
 
         <mat-form-field class="field" color="primary" appearance="outline">
-            <mat-label class="noto">Email</mat-label>
+            <mat-label class="noto">mail</mat-label>
             <mat-icon matPrefix>lock</mat-icon>
             <input [(ngModel)]="email" type="text" matInput placeholder="Enter your password">
 
@@ -30,20 +30,35 @@
 
         <mat-form-field class="field" color="primary" appearance="outline">
             <mat-label class="noto">Rehno/emp id</mat-label>
-            <mat-icon matPrefix>mail</mat-icon>
+            <mat-icon matPrefix>key</mat-icon>
             <input [(ngModel)]="uNumber" type="text" matInput placeholder="Enter your email">
 
             <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
             </mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="field" color="primary" appearance="outline">
-            <mat-label class="noto">role</mat-label>
-            <mat-icon matPrefix>lock</mat-icon>
-            <input [(ngModel)]="role" type="password" matInput placeholder="Enter your password">
+        <mat-form-field class="field" appearance="fill">
+            <mat-label>Choose role</mat-label>
+            <mat-select (selectionChange)="chooseModel($event.value)">
 
-            <mat-hint *ngIf="error=='password'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
-            </mat-hint>
+                <mat-option value="teacher">
+                    <p style="font-family: Source Sans Pro;color: black;">
+                        Instructor
+                    </p>
+                </mat-option>
+
+                <mat-option value="Students">
+
+                    <p style="font-family: Source Sans Pro;color: black;">
+                        Assistant
+                    </p>
+
+
+                </mat-option>
+
+
+
+            </mat-select>
         </mat-form-field>
 
     </div>

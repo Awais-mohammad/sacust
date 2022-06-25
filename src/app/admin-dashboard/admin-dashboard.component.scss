@@ -3,7 +3,7 @@
     justify-content: flex-start;
     align-items: left;
     position: absolute;
-    top: 15em;
+    top: 21em;
     left: 1em;
     padding: 5px;
 
@@ -29,7 +29,27 @@
     cursor: pointer;
 }
 
-h3 {
+h3,h4 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 27px;
 }
+
+.uploadFile{
+    padding: 25px;
+    position: relative;
+    top: 1em;
+}
+.uploadCard{
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.103), 0 6px 6px rgba(0, 0, 0, 0.103);
+    width: 35%;
+    padding: 8px;
+    position: relative;
+    top: 1em;
+    text-align: center;
+
+    p{
+        color: rgba(0, 0, 0, 0.455);
+    }
+}
+

@@ -48,6 +48,8 @@ import { AttendenceComponent } from './attendence/attendence.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { RequestComponent } from './request/request.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { PapaParseModule } from 'ngx-papaparse';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
+    PapaParseModule,
+    MatTabsModule,
     FormsModule, ReactiveFormsModule, AngularFireStorageModule, MatBottomSheetModule,MatRadioModule
   ],
   providers: [],
