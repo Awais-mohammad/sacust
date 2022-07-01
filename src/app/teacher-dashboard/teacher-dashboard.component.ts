@@ -33,7 +33,7 @@ export class TeacherDashboardComponent implements OnInit {
     this.firestore.collection('labs').doc(labID).collection('student-assistants-requests').valueChanges().subscribe(data => {
       if (data.length > 0) {
         this.saReqs = data
-        console.log(this.saReqs);
+        console.log(this.saReqs,'reqs');
 
       }
     })

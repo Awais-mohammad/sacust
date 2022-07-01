@@ -70,7 +70,7 @@ export class RegisterUsersComponent implements OnInit {
           measurementId: "G-PMHQ1NHLYY"
         };
 
-        var secondApp = firebase.initializeApp(config, "secondary")
+        var secondApp = firebase.initializeApp(config, "secondaryapp")
 
         secondApp.auth().createUserWithEmailAndPassword(this.email, this.password).then(resp => {
           alert(resp.user.uid)

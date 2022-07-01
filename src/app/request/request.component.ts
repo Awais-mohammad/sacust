@@ -42,35 +42,41 @@ export class RequestComponent implements OnInit {
 
 
   request() {
-
+    this.showspin()
     if (this.role == 'teacher') {
 
       // check if teacher exists
-      this.firestore.collection('labs', q => q.where('teacherID', '==', this.uNumber)).valueChanges().subscribe((data: any) => {
+      this.firestore.collection('labs', q => q.where('teacherID', '==', this.email)).valueChanges().subscribe((data: any) => {
 
         if (data.length < 1) {
           alert('no lab assigned to you thus you cannot use this system')
+          this.showspin()
         }
         else if (this.name != data[0].teacherName) {
           alert('name miss matched please use official name')
+          this.showspin()
         }
         else {
           console.log(data);
 
-          const password = '123456' + this.uNumber
+          const password = '123456' + this.name
           this.auth.auth.createUserWithEmailAndPassword(this.email, password).then(u => {
             const email = this.email
             const name = this.name
-            const empID = data[0].teacherID
+            // const empID = data[0].teacherID
             const userType = 'Teachers'
             const timestamp = new Date()
             const docID = u.user.uid
             this.firestore.collection('users').doc(docID).set({
-              email, name, empID, userType, timestamp, docID
+              email, name, userType, timestamp, docID
             })
               .then(() => {
-                alert('you can now login with email and password ->' + password)
-                this.close()
+                this.showspin()
+                this.auth.auth.currentUser.sendEmailVerification().then(() => {
+
+                  alert('please check your mail to approve account. Your password is->' + password)
+                  this.close()
+                })
               })
 
           })
@@ -94,6 +100,7 @@ export class RequestComponent implements OnInit {
         docID
       }).then(() => {
         alert('request send')
+        this.showspin()
         this.close()
       })
     }

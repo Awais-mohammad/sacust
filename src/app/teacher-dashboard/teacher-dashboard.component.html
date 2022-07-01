@@ -59,13 +59,13 @@
         <div class="center">
 
             <h3 *ngIf="labs" style="font-family: Roboto;position: relative;left: -12.6em;">
-                <!-- {{underView.labName}} -->
-                Operating Systems lab
+                {{underView.labName}}
+                <!-- Operating Systems lab -->
             </h3>
 
             <p style="color: rgba(0, 0, 0, 0.468);font-size: 16px;font-family: Arial;position: relative;left: -28.4em;">
-                <!-- {{underView.courseCode}} -->
-                hmse1344
+                {{underView.courseCode}}
+                <!-- hmse1344 -->
             </p>
 
 
@@ -79,20 +79,20 @@
                         </u>
                     </h6>
 
-                    <li *ngFor="let item of [].constructor(2)">
+                    <li *ngFor="let item of saReqs">
                         <p>
 
-                            <span>ali</span> requested to join as SA
+                            <span>{{item.name}}</span> requested to join as SA
 
                         </p>
 
 
                         <p>
-                            <button mat-raised-button color="primary">Accept</button>
+                            <button (click)="addSA(item)" mat-raised-button color="primary">Accept</button>
                         </p>
 
-                        
-                        
+
+
                     </li>
                 </div>
 
@@ -107,14 +107,14 @@
 
                     <li>
 
-                        <div *ngFor="let item of [].constructor(2)" style="width: 50%;" class="card">
+                        <div *ngFor="let item of sa" style="width: 50%;" class="card">
 
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNL_ZnOTpXSvhf1UaK7beHey2BX42U6solRA&usqp=CAU"
                                 alt="">
 
                             <p style="font-size:12px;margin-top: 5px;">
-                                <b>Name</b> Muhammad
-                                <b>Reg No:</b>bse183131
+                                <b>Name</b> {{item.name}}
+                                <b>Reg No:</b>{{item.regNo}}
                             </p>
 
                         </div>
@@ -146,7 +146,8 @@
                                 <b>slot 2:</b> 2:00
                             </p>
 
-                            <button mat-raised-button color="primary">Attendence</button>
+                            <button (click)="markAttendence('12:30',sa,underView)" mat-raised-button
+                                color="primary">Attendence</button>
 
 
                         </div>
@@ -185,7 +186,7 @@
 
                         </p>
 
-                        <button (click)="feedback('')" mat-raised-button color="primary">feedback</button>
+                        <button (click)="feedback('ali')" mat-raised-button color="primary">feedback</button>
 
                     </div>
 

@@ -28,15 +28,6 @@
         </mat-form-field>
 
 
-        <mat-form-field class="field" color="primary" appearance="outline">
-            <mat-label class="noto">Rehno/emp id</mat-label>
-            <mat-icon matPrefix>key</mat-icon>
-            <input [(ngModel)]="uNumber" type="text" matInput placeholder="Enter your email">
-
-            <mat-hint *ngIf="error=='email'" style="font-family: Roboto;color: rgba(255, 0, 0, 0.733);">{{errmsg}}
-            </mat-hint>
-        </mat-form-field>
-
         <mat-form-field class="field" appearance="fill">
             <mat-label>Choose role</mat-label>
             <mat-select (selectionChange)="chooseModel($event.value)">
