@@ -1,64 +1,68 @@
 <app-main-nav>
 
-    <!-- view 1 -->
-    <div *ngIf="!view">
+  <!-- view 1 -->
+  <div *ngIf="!view">
 
-        <div class="cardwrapper" style="position: absolute;top:18em">
-            <h3 style="font-weight: bold;">Requests from Users</h3>
+    <div class="cardwrapper" style="position: absolute;top:18em">
+      <h3 style="font-weight: bold;">Requests from Users</h3>
 
-
-        </div>
-
-        <div class="cardwraper">
-
-            <br>
-            <div class="card" *ngFor="let r of requests">
-                <div class="icon">
-                    <mat-icon>cancel</mat-icon>
-                </div>
-
-                {{r.name}} has requested for account creation for role of {{r.role}}
-                verification number is {{r.verification}}
-            </div>
-
-        </div>
-
-
-
-        <div class="uploadFile">
-            <h4 style="font-weight: bold;margin: 0;">Upload excel file to create labs and assign instructors</h4>
-
-            <div class="uploadCard">
-                <p style="margin: 0;">Upload the excel file to create labs</p>
-
-                <input #fileImportInput (change)="fileChangeListener($event)" accept=".csv" type="file" />
-
-
-
-            </div>
-
-        </div>
 
     </div>
 
-    <!-- view 2 for viewing students with certificates / cash etc -->
+    <div class="cardwraper">
 
-    <div *ngIf="view">
-
-        <div style="height:100%">
-        <mat-tab-group >
-            <mat-tab label="Short tab">
-              <div class="example-small-box mat-elevation-z4">
-                Small content
-              </div>
-            </mat-tab>
-            <mat-tab label="Long tab">
-              <div class="example-large-box mat-elevation-z4">
-                Large content
-              </div>
-            </mat-tab>
-          </mat-tab-group>
+      <br>
+      <div class="card" *ngFor="let r of requests">
+        <div (click)="remove(r.docID)" class="icon">
+          <mat-icon>cancel</mat-icon>
         </div>
-          
+
+        {{r.name}} has requested for account creation for role of {{r.role}}
+
+        <button class="btn" mat-flat-button color="primary" (click)="approve(r)">Approve</button>
+
+
+      </div>
+
+
     </div>
+
+
+
+    <div class="uploadFile">
+      <h4 style="font-weight: bold;margin: 0;">Upload excel file to create labs and assign instructors</h4>
+
+      <div class="uploadCard">
+        <p style="margin: 0;">Upload the excel file to create labs</p>
+
+        <input #fileImportInput (change)="fileChangeListener($event)" accept=".csv" type="file" />
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- view 2 for viewing students with certificates / cash etc -->
+
+  <div *ngIf="view">
+
+    <div style="height:100%">
+      <mat-tab-group>
+        <mat-tab label="Short tab">
+          <div class="example-small-box mat-elevation-z4">
+            Small content
+          </div>
+        </mat-tab>
+        <mat-tab label="Long tab">
+          <div class="example-large-box mat-elevation-z4">
+            Large content
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </div>
 </app-main-nav>

@@ -90,10 +90,10 @@ export class RequestComponent implements OnInit {
 
       const name = this.name
       const email = this.email
-      const verification = this.uNumber
+      // const verification = this.uNumber
       const role = this.role
       this.firestore.collection('requests').add({
-        name, email, verification, role
+        name, email, role
       }).then((doc) => {
         const docID = doc.id
         this.firestore.collection('requests').doc(doc.id).update({})

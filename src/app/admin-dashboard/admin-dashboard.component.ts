@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 import { Papa } from 'ngx-papaparse';
 
 @Component({
@@ -47,6 +48,50 @@ export class AdminDashboardComponent implements OnInit {
         this.router.navigate(['home'])
       }
 
+    })
+  }
+
+  remove(param) {
+    this.firestore.collection('requests').doc(param).delete().then(() => {
+      alert('request removed')
+    }).catch(() => {
+      alert('Something went wrong!!')
+    })
+  }
+
+  approve(param) {
+    var config = {
+      apiKey: "AIzaSyDTfhG_ocAYr870eLCqc361un5NJ2EI4qs",
+      authDomain: "sa-cust.firebaseapp.com",
+      projectId: "sa-cust",
+      storageBucket: "sa-cust.appspot.com",
+      messagingSenderId: "875712135758",
+      appId: "1:875712135758:web:0ac6849ee8dfe558b6b91f",
+      measurementId: "G-PMHQ1NHLYY"
+    };
+
+    var secondApp = firebase.initializeApp(config, "secondaryapp")
+
+    secondApp.auth().createUserWithEmailAndPassword(param.email, '123456').then(resp => {
+      alert(resp.user.uid)
+      if (resp.user.uid) {
+        secondApp.auth().currentUser.sendEmailVerification().then(() => {
+          alert('User registered check your email to verify otherwise you will not be able to login')
+          const name = param.name
+          const email = param.email
+          const userType = 'Students'
+          const userID = resp.user.uid
+          const timestamp = new Date()
+          this.firestore.collection('users').doc(resp.user.uid).set({
+            name, email, userType, userID, timestamp
+          })
+
+          secondApp.auth().signOut()
+          alert('student created')
+        }).catch((err => {
+          alert(err.message)
+        }))
+      }
     })
   }
 
