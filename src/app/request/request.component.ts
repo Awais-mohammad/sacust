@@ -96,12 +96,14 @@ export class RequestComponent implements OnInit {
         name, email, role
       }).then((doc) => {
         const docID = doc.id
-        this.firestore.collection('requests').doc(doc.id).update({})
-        docID
-      }).then(() => {
-        alert('request send')
-        this.showspin()
-        this.close()
+        this.firestore.collection('requests').doc(doc.id).update({
+          docID
+        }).then(() => {
+          alert('request send')
+          this.showspin()
+          this.close()
+        })
+
       })
     }
   }

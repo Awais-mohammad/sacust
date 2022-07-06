@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { CreateLabComponent } from '../create-lab/create-lab.component';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { MylabsComponent } from '../mylabs/mylabs.component';
 
 @Component({
   selector: 'app-main-nav',
@@ -69,6 +70,8 @@ export class MainNavComponent {
     };
     this.dialog.open(RegisterUsersComponent, dialogConfig);
   }
+
+
 
 
   logOut() {

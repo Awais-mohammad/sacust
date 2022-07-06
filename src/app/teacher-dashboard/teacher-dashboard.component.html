@@ -79,21 +79,34 @@
                         </u>
                     </h6>
 
-                    <li *ngFor="let item of saReqs">
+                    <div *ngIf="sa">
+
+                        <li *ngFor="let item of saReqs">
+                            <p>
+
+                                <span>{{item.name}}</span> requested to join as SA
+
+                            </p>
+
+
+                            <p>
+                                <button (click)="addSA(item)" mat-raised-button color="primary">Accept</button>
+                            </p>
+
+
+
+                        </li>
+
+
+                    </div>
+
+                    <div *ngIf="saReqs < 1">
                         <p>
-
-                            <span>{{item.name}}</span> requested to join as SA
-
+                            No requests to show
                         </p>
+                    </div>
 
 
-                        <p>
-                            <button (click)="addSA(item)" mat-raised-button color="primary">Accept</button>
-                        </p>
-
-
-
-                    </li>
                 </div>
 
 
@@ -136,18 +149,21 @@
 
                     <li>
 
-                        <div *ngFor="let item of [].constructor(2)" class="card"
-                            style="width: 100%;display: flex;flex-direction: column;">
+                        <div class="card" style="width: 100%;display: flex;flex-direction: column;">
 
 
-                            <p style="font-size:16px;margin-top: 5px;">
-                                <b>slot 1:</b> 12:30
+                            <div style="font-size:16px;margin-top: 5px;">
+                                <p>slot 1: {{underView.slotOne}}</p>
+                                <button (click)="markAttendence(underView.slotOne,underView)" mat-raised-button
+                                    color="primary">Attendence</button>
+
                                 <br>
-                                <b>slot 2:</b> 2:00
-                            </p>
+                                <p>slot 2: {{underView.slotTwo}}</p>
+                                <button (click)="markAttendence(underView.slotTwo,underView)" mat-raised-button
+                                    color="primary">Attendence</button>
 
-                            <button (click)="markAttendence('12:30',sa,underView)" mat-raised-button
-                                color="primary">Attendence</button>
+                            </div>
+
 
 
                         </div>
@@ -171,7 +187,7 @@
                         feedback form
                     </u>
 
-                    <div *ngFor="let item of [].constructor(2)" style="display: flex;width:100%;padding: 5px;">
+                    <div *ngFor="let item of sa" style="display: flex;width:100%;padding: 5px;">
 
 
                         <img style="width: 5%;"
@@ -179,14 +195,14 @@
                             alt="">
 
                         <p style="font-size:12px;margin-top: 15px;margin-left: 6px;">
-                            <b>Name</b> Muhammad
-                            <b>Reg No:</b>bse183131
+                            <b>Name</b> {{item.name}}
+                            <b>Reg No:</b>{{item.regNo}}
                         </p>
                         <p style="width: 60%;">
 
                         </p>
 
-                        <button (click)="feedback('ali')" mat-raised-button color="primary">feedback</button>
+                        <button (click)="feedback(item.name,item.regNo)" mat-raised-button color="primary">feedback</button>
 
                     </div>
 

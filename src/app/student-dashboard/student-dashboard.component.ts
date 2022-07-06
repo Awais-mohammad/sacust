@@ -145,6 +145,8 @@ export class StudentDashboardComponent implements OnInit {
   post() {
     this.firestore.collection('labs', (q => q.where('labName', '==', this.choosedLab))).valueChanges().subscribe((l: any) => {
 
+      console.log(l,'labeName');
+      
       const name = this.userData.name
       const regNo = this.regNo
       const incentive = this.choosedIncent
@@ -153,18 +155,23 @@ export class StudentDashboardComponent implements OnInit {
 
       if (l.length > 0) {
 
-        this.firestore.collection('labs').doc(this.temp[0].docID).collection('student-assistants-requests').add({
-          name, regNo, incentive
-        }).then((d) => {
-          const docID = d.id
-          this.firestore.collection('labs').doc(this.temp[0].docID).collection('student-assistants-requests').doc(docID).update({
-            docID
-          }).then(() => {
-            alert('request sent successfully')
-            this.currentDiv = 'timetable'
-          })
+     if(l.SA < 2){
+      this.firestore.collection('labs').doc(this.temp[0].docID).collection('student-assistants-requests').add({
+        name, regNo, incentive
+      }).then((d) => {
+        const docID = d.id
+        this.firestore.collection('labs').doc(this.temp[0].docID).collection('student-assistants-requests').doc(docID).update({
+          docID
+        }).then(() => {
+          alert('request sent successfully')
+          this.currentDiv = 'timetable'
         })
+      })
 
+     }
+     else{
+      alert('No more space for SA in this lab')
+     }
       }
       else {
         alert('try again after some time as instructor didnot created the lab till now')

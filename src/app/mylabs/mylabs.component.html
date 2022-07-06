@@ -1,0 +1,43 @@
+<div class="closeicon">
+    <mat-icon (click)="close()" style="color:red" matPrefix>cancel</mat-icon>
+</div>
+
+
+<div class="parent">
+
+
+    <!-- Please take a look at this video! https://www.youtube.com/watch?v=M7MuHxHI8Xc -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1612428978260-2b9c7df20150?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+            alt="Image">
+        <div class="details">
+            <h2>{{labData.name}}</h2>
+            <p>Instructor:{{labData.teacherName}}</p>
+        </div>
+    
+        <div *ngIf="assist">
+            <p *ngFor="let item of assist" id="info">
+                <span *ngIf="item">
+                    {{item.name}} is SA with reg no {{item.regNo}} you can view feedback for it once exists.Lab instructor demands
+                    {{item.incentiveToGive}}
+    
+                </span>
+    
+                <span *ngIf="!item.name">
+                    No SA's for this lab
+                </span>
+            </p>
+       
+        </div>
+
+        
+        <div *ngIf="!assist">
+            
+                <span>
+                    No SA's for this lab
+                </span>
+            
+                
+        </div>
+    </div>
+</div>

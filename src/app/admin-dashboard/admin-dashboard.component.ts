@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { Papa } from 'ngx-papaparse';
+import { MylabsComponent } from '../mylabs/mylabs.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,9 +18,10 @@ export class AdminDashboardComponent implements OnInit {
     private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router,
-    private papa: Papa
+    private papa: Papa,
+    private dialoge: MatDialog
   ) {
-    this.view = false
+    this.view = true
   }
 
   view: boolean;
@@ -51,6 +54,9 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
+  shift() {
+    this.view = !this.view
+  }
   remove(param) {
     this.firestore.collection('requests').doc(param).delete().then(() => {
       alert('request removed')
@@ -111,8 +117,9 @@ export class AdminDashboardComponent implements OnInit {
   instructor: string[] = []
   empId: string[] = []
   labCode: string[] = [];
-  timings: string[] = []
-
+  timingsOne: string[] = []
+  timingsTwo: string[] = []
+  day: string[] = []
   // LOAD CSV FILE FROM INPUT
   fileChangeListener($event: any): void {
 
@@ -139,6 +146,8 @@ export class AdminDashboardComponent implements OnInit {
           let csvTableData = [...results.data.slice(1, results.data.length)];
           console.log(csvTableData);
 
+          console.log(csvTableData);
+
           for (var i = 0; i < csvTableData.length; i++) {
 
             // console.log();
@@ -147,10 +156,13 @@ export class AdminDashboardComponent implements OnInit {
             if (csvTableData[i][2] && csvTableData[i][7]) {
               this.labName.push(csvTableData[i][2])
               this.instructor.push(csvTableData[i][7])
-              this.empId.push(csvTableData[i][9])
+              this.empId.push(csvTableData[i][8])
               this.labCode.push(csvTableData[i][1])
-              this.timings.push(csvTableData[i][6].slice(5))
+              this.timingsOne.push(csvTableData[i][10])
+              this.timingsTwo.push(csvTableData[i][11])
+              this.day.push(csvTableData[i][9])
             }
+            console.log(this.timingsOne, this.timingsTwo);
 
 
 
@@ -174,16 +186,17 @@ export class AdminDashboardComponent implements OnInit {
 
     for (var i = 0; i < this.labName.length; i++) {
       console.log('labName->', this.labName[i], this.labCode[i], 'instructor', this.instructor[i], 'empID', this.empId[i]);
-
+      const day = this.day[i]
       const labName = this.labName[i]
       const courseCode = this.labCode[i]
       const teacherName = this.instructor[i]
       const SA = 0
       const teacherID = this.empId[i]
-      const startTime = this.timings[i]
+      const slotOne = this.timingsOne[i]
+      const slotTwo = this.timingsTwo[i]
 
       this.firestore.collection('labs').add({
-        labName, courseCode, teacherName, SA, teacherID, startTime
+        labName, courseCode, teacherName, SA, teacherID, slotOne, slotTwo
       }).then(doc => {
         const docID = doc.id
         this.firestore.collection('labs').doc(doc.id).update({
@@ -199,8 +212,34 @@ export class AdminDashboardComponent implements OnInit {
 
     alert('labs created successfully!!')
   }
-  ngOnInit(): void {
+  labs: any[]
 
+  getLabs() {
+    this.firestore.collection('labs').valueChanges().subscribe(lab => {
+      this.labs = lab
+
+    })
+  }
+
+  viewLab(labID) {
+    // console.log(this.cUser.email);
+    console.log(labID);
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '650px';
+    dialogConfig.width = '500px';
+    dialogConfig.data = {
+      user: labID,
+    };
+    this.dialoge.open(MylabsComponent, dialogConfig);
+  }
+
+
+  ngOnInit(): void {
+    this.getLabs()
     // get current user information
     this.getRequests()
     this.getCurrentUser()

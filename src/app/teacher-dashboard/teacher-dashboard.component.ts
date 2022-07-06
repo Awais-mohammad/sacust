@@ -33,19 +33,23 @@ export class TeacherDashboardComponent implements OnInit {
     this.firestore.collection('labs').doc(labID).collection('student-assistants-requests').valueChanges().subscribe(data => {
       if (data.length > 0) {
         this.saReqs = data
-        console.log(this.saReqs,'reqs');
+        console.log(this.saReqs, 'reqs');
 
       }
     })
   }
 
   underView: any;
+  time: number;
+
   viewLab(lab) {
     this.underView = lab
     console.log(this.underView);
     this.currentDiv = 'view-lab'
     this.getRequests(this.underView.docID)
     this.getSA()
+    this.time = Number(this.underView.startTime) + 120
+    console.log('slot 2==>', this.time);
 
   }
 
@@ -85,8 +89,8 @@ export class TeacherDashboardComponent implements OnInit {
 
   }
 
-  markAttendence(slot, sa, labID) {
-    console.log(slot, sa, labID);
+  markAttendence(slot, labID) {
+    console.log(slot, labID);
 
     const dialogConfig = new MatDialogConfig();
 
@@ -97,12 +101,12 @@ export class TeacherDashboardComponent implements OnInit {
     dialogConfig.data = {
 
       c_slot: slot,
-      labID: labID
+      labID: labID.docID
     }
     this.dialog.open(AttendenceComponent, dialogConfig);
   }
 
-  feedback(sname) {
+  feedback(sname, regNo) {
     // console.log(slot, sa, labID);
 
     const dialogConfig = new MatDialogConfig();
@@ -113,7 +117,8 @@ export class TeacherDashboardComponent implements OnInit {
     dialogConfig.width = '40%';
     dialogConfig.data = {
 
-      std_name: sname
+      std_name: sname,
+      reg: regNo
     }
     this.dialog.open(FeedbackComponent, dialogConfig);
   }
@@ -127,7 +132,7 @@ export class TeacherDashboardComponent implements OnInit {
         // console.log();
 
         this.firestore.collection('users').doc(u.uid).valueChanges().subscribe((data: any) => {
-          this.firestore.collection('labs', (q => q.where('teacherID', '==', data.empID))).valueChanges().subscribe(labsData => {
+          this.firestore.collection('labs', (q => q.where('teacherID', '==', data.email))).valueChanges().subscribe(labsData => {
             this.labs = labsData
             console.log(this.labs);
 

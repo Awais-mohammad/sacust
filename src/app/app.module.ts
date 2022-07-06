@@ -50,6 +50,7 @@ import { RequestComponent } from './request/request.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { PapaParseModule } from 'ngx-papaparse';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MylabsComponent } from './mylabs/mylabs.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     CreateLabComponent,
     AttendenceComponent,
     RequestComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    MylabsComponent
   ],
   imports: [
     MatToolbarModule,

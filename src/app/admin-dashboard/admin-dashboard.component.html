@@ -27,7 +27,13 @@
 
     </div>
 
-
+    <p (click)="shift()">
+      <b>
+        <u>
+          View Labs
+        </u>
+      </b>
+    </p>
 
     <div class="uploadFile">
       <h4 style="font-weight: bold;margin: 0;">Upload excel file to create labs and assign instructors</h4>
@@ -47,22 +53,32 @@
 
   <!-- view 2 for viewing students with certificates / cash etc -->
 
-  <div *ngIf="view">
+  <div style="padding: 8px;"  *ngIf="view">
 
-    <div style="height:100%">
-      <mat-tab-group>
-        <mat-tab label="Short tab">
-          <div class="example-small-box mat-elevation-z4">
-            Small content
-          </div>
-        </mat-tab>
-        <mat-tab label="Long tab">
-          <div class="example-large-box mat-elevation-z4">
-            Large content
-          </div>
-        </mat-tab>
-      </mat-tab-group>
+    <p (click)="shift()">
+      <b>
+        <u>
+          back
+        </u>
+      </b>
+    </p>
+<br>
+
+<div class="flexgrid"> 
+  <div *ngFor="let item of labs" class="basic-card basic-card-light">
+    <div class="card-content">
+      <span class="card-title">{{item.labName}}</span>
+      <p class="card-text">
+   Instrutor of the lab is: {{item.teacherName}}
+      </p>
     </div>
+
+    <div class="card-link">
+      <a (click)="viewLab(item.docID)"><span>Expand</span></a>
+    </div>
+  </div>
+
+</div>
 
   </div>
 </app-main-nav>
