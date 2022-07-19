@@ -94,6 +94,8 @@ export class AdminDashboardComponent implements OnInit {
 
           secondApp.auth().signOut()
           alert('student created')
+        }).then(()=>{
+          secondApp.delete()
         }).catch((err => {
           alert(err.message)
         }))
